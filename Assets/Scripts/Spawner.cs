@@ -3,7 +3,7 @@ using UnityEngine.Pool;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _prefab;
+    [SerializeField] private GameObject _cubePrefab;
     [SerializeField] private GameObject _startPoint;
     [SerializeField] private float _repeatRate = 3f;
     [SerializeField] private float _startDelay = 0.0f;
@@ -19,7 +19,7 @@ public class Spawner : MonoBehaviour
     private void Awake()
     {
         _pool = new ObjectPool<GameObject>(
-        createFunc: () => Instantiate(_prefab),
+        createFunc: () => Instantiate(_cubePrefab),
         actionOnGet: (obj) => ActionOnGet(obj),
         actionOnRelease: (obj) => obj.SetActive(false),
         actionOnDestroy: (obj) => Destroy(obj),
@@ -68,7 +68,7 @@ public class Spawner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Cube"))
+        if (other.gameObject.GetComponent<Cube>() != null)
         {
             _pool.Release(other.gameObject);
         }
