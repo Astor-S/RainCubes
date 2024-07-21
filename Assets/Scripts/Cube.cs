@@ -14,7 +14,7 @@ public class Cube : MonoBehaviour
 
     private void Start()
     {
-        _initialColor = GetComponent<Renderer>().material.color;
+        _initialColor = _renderer.material.color;
     }
 
     private void Awake()
