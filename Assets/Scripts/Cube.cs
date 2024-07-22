@@ -12,14 +12,23 @@ public class Cube : MonoBehaviour
     private Renderer _renderer;
     private Color _initialColor;
 
+    private void Awake()
+    {
+        _renderer = GetComponent<Renderer>();
+    }
+
     private void Start()
     {
         _initialColor = _renderer.material.color;
     }
 
-    private void Awake()
+    private void OnEnable()
     {
-        _renderer = GetComponent<Renderer>();
+        if (_hasTouchedPlatform)
+        {
+            _renderer.material.color = _initialColor;
+            _hasTouchedPlatform = false;
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -41,14 +50,5 @@ public class Cube : MonoBehaviour
     private void Deactivate()
     {
         gameObject.SetActive(false);
-    }
-
-    private void OnEnable()
-    {
-        if (_hasTouchedPlatform)
-        {
-            _renderer.material.color = _initialColor;
-            _hasTouchedPlatform = false;
-        }
     }
 }
