@@ -28,6 +28,19 @@ public class Spawner : MonoBehaviour
         maxSize: _poolMaxSize);
     }
 
+    private void Start()
+    {
+        InvokeRepeating(nameof(GetCube), _startDelay, _repeatRate);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.GetComponent<Cube>() != null)
+        {
+            _pool.Release(other.gameObject);
+        }
+    }
+
     private void ActionOnGet (GameObject obj)
     {
         Vector3 randomPosition = GetRandomPositionOverPlatform();
@@ -40,7 +53,6 @@ public class Spawner : MonoBehaviour
     {
         if (_platforms.Length == 0)
         {
-            Debug.LogError("Для спавнера не назначено платформ.");
             return _startPoint.transform.position;
         }
 
@@ -56,21 +68,8 @@ public class Spawner : MonoBehaviour
         return randomPosition;
     }
 
-    private void Start()
-    {
-        InvokeRepeating(nameof(GetCube), _startDelay, _repeatRate);  
-    }
-
     private void GetCube()
     {
         _pool.Get();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.GetComponent<Cube>() != null)
-        {
-            _pool.Release(other.gameObject);
-        }
     }
 }
