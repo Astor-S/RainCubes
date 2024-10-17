@@ -123,16 +123,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &88222184 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4256430135203497007, guid: 2e8725a6f02d22247959feea9c5ebc02, type: 3}
+--- !u!114 &88222185 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7239578162289379098, guid: 2e8725a6f02d22247959feea9c5ebc02, type: 3}
   m_PrefabInstance: {fileID: 903024735}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &219961635 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4256430135203497007, guid: 2e8725a6f02d22247959feea9c5ebc02, type: 3}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb030e0407862f5488e97108fc76f4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &219961636 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7239578162289379098, guid: 2e8725a6f02d22247959feea9c5ebc02, type: 3}
   m_PrefabInstance: {fileID: 8904115916455307608}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb030e0407862f5488e97108fc76f4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &705507993
 GameObject:
   m_ObjectHideFlags: 0
@@ -380,11 +392,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 11.858, y: -173.682, z: 2.789}
---- !u!1 &1229818757 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4256430135203497007, guid: 2e8725a6f02d22247959feea9c5ebc02, type: 3}
+--- !u!114 &1229818758 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7239578162289379098, guid: 2e8725a6f02d22247959feea9c5ebc02, type: 3}
   m_PrefabInstance: {fileID: 1921948230}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb030e0407862f5488e97108fc76f4bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1921948230
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -490,17 +508,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdb4bec55485ca4b830d71a85b22279, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _cubePrefab: {fileID: 7888534216627814781, guid: 4000465f6bba673489dadb2e3e3d40fe, type: 3}
+  _cubePrefab: {fileID: -4399115404228559010, guid: 4000465f6bba673489dadb2e3e3d40fe, type: 3}
   _startPoint: {fileID: 0}
+  _platforms:
+  - {fileID: 219961636}
+  - {fileID: 88222185}
+  - {fileID: 1229818758}
   _repeatRate: 1
   _startDelay: 0
   _poolCapacity: 5
   _poolMaxSize: 5
   _spawnHeight: 20
-  _platforms:
-  - {fileID: 219961635}
-  - {fileID: 88222184}
-  - {fileID: 1229818757}
 --- !u!1001 &8904115916455307608
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,7 +1,8 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
-
+[RequireComponent (typeof(Renderer))]
 public class Cube : MonoBehaviour
 {
     [SerializeField] private float _minDuration = 2f;
@@ -11,6 +12,9 @@ public class Cube : MonoBehaviour
     private float _lifeTimeAfterTouch;
     private Renderer _renderer;
     private Color _initialColor;
+    private Spawner _spawner;
+
+    public event Action<Cube> Destroyed;
 
     private void Awake()
     {
@@ -37,18 +41,19 @@ public class Cube : MonoBehaviour
         {
             _hasTouchedPlatform = true;
             ChangeColor();
-            _lifeTimeAfterTouch = Random.Range(_minDuration, _maxDuration);
+            _lifeTimeAfterTouch = UnityEngine.Random.Range(_minDuration, _maxDuration);
             Invoke(nameof(Deactivate), _lifeTimeAfterTouch);
         }
     }
 
     private void ChangeColor()
     {
-        _renderer.material.color = new Color(Random.value, Random.value, Random.value);
+        _renderer.material.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
     }
 
     private void Deactivate()
     {
-        gameObject.SetActive(false);
+        Destroyed?.Invoke(this);
+        gameObject.SetActive(false); 
     }
 }
