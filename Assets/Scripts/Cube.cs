@@ -42,7 +42,7 @@ public class Cube : MonoBehaviour
             _hasTouchedPlatform = true;
             ChangeColor();
             _lifeTimeAfterTouch = UnityEngine.Random.Range(_minDuration, _maxDuration);
-            Invoke(nameof(Deactivate), _lifeTimeAfterTouch);
+            Invoke(nameof(Destroy), _lifeTimeAfterTouch);
         }
     }
 
@@ -51,9 +51,8 @@ public class Cube : MonoBehaviour
         _renderer.material.color = new Color(UnityEngine.Random.value, UnityEngine.Random.value, UnityEngine.Random.value);
     }
 
-    private void Deactivate()
+    private void Destroy()
     {
         Destroyed?.Invoke(this);
-        gameObject.SetActive(false); 
     }
 }
