@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
@@ -11,6 +12,9 @@ public class Spawner : MonoBehaviour
     [SerializeField] private int _poolCapacity = 5;
     [SerializeField] private int _poolMaxSize = 15;
     [SerializeField] private float _spawnHeight = 20f;
+
+    private WaitForSeconds _waitStartDelay;
+    private WaitForSeconds _waitRepeatRate;
 
     private int _zeroPlatform = 0;
 
@@ -26,11 +30,14 @@ public class Spawner : MonoBehaviour
         collectionCheck: true,
         defaultCapacity: _poolCapacity,
         maxSize: _poolMaxSize);
+
+        _waitStartDelay = new WaitForSeconds(_startDelay);
+        _waitRepeatRate = new WaitForSeconds(_repeatRate);
     }
 
     private void Start()
     {
-        InvokeRepeating(nameof(GetCube), _startDelay, _repeatRate);
+        StartCoroutine(SpawnCoroutine());
     }
 
     private void ActionOnGet (Cube cube)
@@ -50,7 +57,7 @@ public class Spawner : MonoBehaviour
         }
 
         Platform randomPlatform = _platforms[Random.Range(_zeroPlatform, _platforms.Length)];
-        Bounds platformBounds = randomPlatform.GetComponent<Collider>().bounds;
+        Bounds platformBounds = randomPlatform.Collider.bounds;
 
         Vector3 randomPosition = new Vector3(
             Random.Range(platformBounds.min.x, platformBounds.max.x),
@@ -75,5 +82,16 @@ public class Spawner : MonoBehaviour
     private void OnCubeDestroyed(Cube cube)
     {
         _pool.Release(cube);
+    }
+
+    private IEnumerator SpawnCoroutine()
+    {
+        yield return _waitStartDelay;
+
+        while (enabled)
+        {
+            GetCube();
+            yield return _waitRepeatRate;
+        }
     }
 }
